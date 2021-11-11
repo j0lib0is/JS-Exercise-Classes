@@ -75,7 +75,7 @@ class Person {
 
 
 /*
-  TASK 2
+  ✅ TASK 2
     - ✅ Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
     - ✅ All instances built with Car:
         + ✅ should initialize with a `tank` at 0
@@ -120,42 +120,81 @@ class Car {
 
 
 /*
-  TASK 3
-    - Write a Lambdasian class.
-    - Its constructor takes a single argument - an object with the following keys:
-        + name
-        + age
-        + location
-    - Its constructor should initialize `name`, `age` and `location` properties on the instance.
-    - Instances of Lambdasian should be able to `.speak()`:
-        + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
-        + {name} and {location} of course come from the instance's own properties.
+  ✅ TASK 3
+    - ✅ Write a Lambdasian class.
+    - ✅ Its constructor takes a single argument - an object with the following keys:
+        + ✅ name
+        + ✅ age
+        + ✅ location
+    - ✅ Its constructor should initialize `name`, `age` and `location` properties on the instance.
+    - ✅ Instances of Lambdasian should be able to `.speak()`:
+        + ✅ Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
+        + ✅ {name} and {location} of course come from the instance's own properties.
 */
 
 class Lambdasian {
-  
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+// TEST
+const jane = new Lambdasian({
+  name: 'Jane',
+  age: '100',
+  location: 'Paris'
+})
+// console.log(jane.speak());
 
 
 
 /*
   TASK 4
-    - Write an Instructor class extending Lambdasian.
-    - Its constructor takes a single argument - an object with the following keys:
-        + All the keys used to initialize instances of Lambdasian.
-        + `specialty`: what the instance of Instructor is good at, i.e. 'redux'
-        + `favLanguage`: i.e. 'JavaScript, Python, Elm etc.'
-        + `catchPhrase`: i.e. `Don't forget the homies`.
-    - The constructor calls the parent constructor passing it what it needs.
-    - The constructor should also initialize `specialty`, `favLanguage` and `catchPhrase` properties on the instance.
-    - Instructor instances have the following methods:
-        + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
-        + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
+    - ✅ Write an Instructor class extending Lambdasian.
+    - ✅ Its constructor takes a single argument - an object with the following keys:
+        + ✅ All the keys used to initialize instances of Lambdasian.
+        + ✅ `specialty`: what the instance of Instructor is good at, i.e. 'redux'
+        + ✅ `favLanguage`: i.e. 'JavaScript, Python, Elm etc.'
+        + ✅ `catchPhrase`: i.e. `Don't forget the homies`.
+    - ✅ The constructor calls the parent constructor passing it what it needs.
+    - ✅ The constructor should also initialize `specialty`, `favLanguage` and `catchPhrase` properties on the instance.
+    - ✅ Instructor instances have the following methods:
+        + ✅ `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
+        + ✅ `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(childAttributes) {
+    super(childAttributes);
+    this.specialty = childAttributes.specialty;
+    this.favLanguage = childAttributes.favLanguage;
+    this.catchPhrase = childAttributes.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
+
+// TEST
+const joe = new Instructor({
+  name: 'Joe',
+  age: '101',
+  location: 'Madrid',
+  specialty: 'Mobile Apps',
+  favLanguage: 'React Native',
+  catchPhrase: 'Ohhh yeeaahhh',
+})
+// console.log(joe);
+console.log(joe.grade(jane, 'Javascript'));
+console.log(joe.demo('Javascript'));
 
 
 
