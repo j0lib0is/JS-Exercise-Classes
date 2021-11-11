@@ -22,11 +22,11 @@ Using VSCode and Command Line:
 5. ✅ cd into your repo
 6. ✅ Open the terminal in your vs code and type `npm install`
 7. ✅ Next type `npm run test` in your terminal
-8. Complete your work making regular commits to main/ master your codegrade score will update each time you make a push.
+8. ✅ Complete your work making regular commits to main/ master your codegrade score will update each time you make a push.
 
 ### Task 2 - MVP
 
-Find the file `index.js` and complete the tasks until all of your tests pass.
+✅ Find the file `index.js` and complete the tasks until all of your tests pass.
 
 **You can use yesterday's work to help you.** However, if you struggled a lot with that assignment, it is recommended that you attempt to re-write all code without "cheating" (peeking at yesterday's code or copy-pasting it).
 

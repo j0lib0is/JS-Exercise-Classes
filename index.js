@@ -154,7 +154,7 @@ const jane = new Lambdasian({
 
 
 /*
-  TASK 4
+  ✅ TASK 4
     - ✅ Write an Instructor class extending Lambdasian.
     - ✅ Its constructor takes a single argument - an object with the following keys:
         + ✅ All the keys used to initialize instances of Lambdasian.
@@ -169,11 +169,11 @@ const jane = new Lambdasian({
 */
 
 class Instructor extends Lambdasian {
-  constructor(childAttributes) {
-    super(childAttributes);
-    this.specialty = childAttributes.specialty;
-    this.favLanguage = childAttributes.favLanguage;
-    this.catchPhrase = childAttributes.catchPhrase;
+  constructor(instAttributes) {
+    super(instAttributes);
+    this.specialty = instAttributes.specialty;
+    this.favLanguage = instAttributes.favLanguage;
+    this.catchPhrase = instAttributes.catchPhrase;
   }
   demo(subject) {
     return `Today we are learning about ${subject}`;
@@ -193,50 +193,98 @@ const joe = new Instructor({
   catchPhrase: 'Ohhh yeeaahhh',
 })
 // console.log(joe);
-console.log(joe.grade(jane, 'Javascript'));
-console.log(joe.demo('Javascript'));
+// console.log(joe.grade(jane, 'Javascript'));
+// console.log(joe.demo('Javascript'));
 
 
 
 /*
-  TASK 5
-    - Write a Student class extending Lambdasian.
-    - Its constructor takes a single argument -  an object with the following keys:
-        + All the keys used to initialize instances of Lambdasian.
-        + `previousBackground` i.e. what the Student used to do before Lambda School
-        + `className` i.e. CS132
-        + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
-    - The constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
-    - Student instances have the following methods:
-        + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
-        + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
-        + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+  ✅ TASK 5
+    - ✅ Write a Student class extending Lambdasian.
+    - ✅ Its constructor takes a single argument -  an object with the following keys:
+        + ✅ All the keys used to initialize instances of Lambdasian.
+        + ✅ `previousBackground` i.e. what the Student used to do before Lambda School
+        + ✅ `className` i.e. CS132
+        + ✅ `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
+    - ✅ The constructor calls the parent constructor passing to it what it needs.
+    - ✅ The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
+    - ✅ Student instances have the following methods:
+        + ✅ `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
+        + ✅ `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
+        + ✅ `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
-   
+class Student extends Lambdasian {
+  constructor(studentAttributes) {
+  super(studentAttributes);
+  this.previousBackground = studentAttributes.previousBackground;
+  this.className = studentAttributes.className;
+  this.favSubjects = studentAttributes.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects.toString()}!`;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
+
+// TEST
+const jim = new Student({
+  name: 'Jim',
+  age: '102',
+  location: 'London',
+  previousBackground: 'Engineer',
+  className: 'Web50',
+  favSubjects: ['HTML', 'CSS'],
+})
+// console.log(jim.listSubjects());
+// console.log(jim.PRAssignment('JavaScript'));
+// console.log(jim.sprintChallenge('JavaScript'));
 
 
 
 /*
-  TASK 6
-    - Write a ProjectManager class extending Instructor.
-    - Its constructor takes a single argument - an object with the following keys:
-        + All the keys used to initialize instances of Instructor.
-        + `gradClassName`: i.e. CS1
-        + `favInstructor`: i.e. Sean
-    - Its constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
-    - ProjectManager instances have the following methods:
-        + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
-        + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
+  ✅ TASK 6
+    - ✅ Write a ProjectManager class extending Instructor.
+    - ✅ Its constructor takes a single argument - an object with the following keys:
+        + ✅ All the keys used to initialize instances of Instructor.
+        + ✅ `gradClassName`: i.e. CS1
+        + ✅ `favInstructor`: i.e. Sean
+    - ✅ Its constructor calls the parent constructor passing to it what it needs.
+    - ✅ The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
+    - ✅ ProjectManager instances have the following methods:
+        + ✅ `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
+        + ✅ `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
-   
+class ProjectManager extends Instructor {
+   constructor(mngAttributes) {
+     super(mngAttributes);
+     this.gradClassName = mngAttributes.gradClassName;
+     this.favInstructor = mngAttributes.favInstructor;
+   }
+   standUp(channel) {
+     return `${this.name} announces to ${channel}, @channel standy times!`;
+   }
+   debugsCode(student, subject) {
+     return `${this.name} debugs ${student.name}'s code on ${subject}`;
+   }
 }
+
+// TEST
+const jess = new ProjectManager({
+  name: 'Jess',
+  age: '103',
+  location: 'Rome',
+  gradClassName: 'CS1',
+  favInstructor: 'Brit Hemming',
+})
+// console.log(jess.standUp('#general'));
+// console.log(jess.debugsCode(jane, 'JavaScript'));
 
 
 
